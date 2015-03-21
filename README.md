@@ -1,4 +1,4 @@
-UP2014-15-group-6
+Group 6 Practicum 2014-15
 ==================
 
 Practicum materials.
