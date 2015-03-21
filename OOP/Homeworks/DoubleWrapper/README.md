@@ -1,5 +1,5 @@
 Double Wrapper
 ============
 
-Implement the following header
+Implement Double.h
 * Due Date __30.03.2015__
