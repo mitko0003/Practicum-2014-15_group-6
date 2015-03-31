@@ -1,0 +1,8 @@
+Beispiel*NOUN*das*Beispiele*example
+Auto*NOUN*das*Autos*car
+Scherz*NOUN*der*Scherze*joke
+Ende*NOUN*das*Enden*end
+Kessel*NOUN*der*Kessel*kettle, pot
+Witz*NOUN*der*Witze*joke
+Schwester*NOUN*die*Schwestern*sister
+Hund*NOUN*der*Hunde*dog
