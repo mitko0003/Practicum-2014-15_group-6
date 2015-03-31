@@ -1,0 +1,7 @@
+Auto*NOUN*das*Autos*car
+unbefugt*ADJ*unauthorized
+kaufen*VERB*kaufte, gekauft*buy, shop
+Witz*NOUN*der*Witze*joke
+Beispiel*NOUN*das*Beispiele*example
+knarren*VERB*knarrte, geknarrt*creak
+denken*VERB*dachte, gedacht*think (an A - about)
