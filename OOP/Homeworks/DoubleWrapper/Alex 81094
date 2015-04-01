@@ -1,0 +1,90 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstdlib>
+#include "DoubleWrapper.h"
+
+using namespace std;
+
+Double::Double()
+{
+    a = 0.0;
+}
+
+Double::Double(const double& number)
+{
+    a = number;
+}
+
+Double::Double(const char* arr)
+{
+   char* temp;
+   a = strtod(arr, &temp);
+}
+
+double Double::doubleValue() const
+{
+    return a;
+}
+
+void Double::print(const int& precision) const
+{
+    cout << setprecision(precision) << a << endl;
+}
+
+void Double::printMantissa() const
+{
+    int n;
+    cout << "Mantissa: " << frexp(a, &n);
+}
+
+void Double::printExponent() const
+{
+    int n;
+    frexp(a, &n);
+    cout << "Exponent: " << n;
+}
+
+Double& Double::increment() const
+{
+    return *(new Double (a+1));
+}
+
+bool Double::equals(const Double& number) const
+{
+    return a == number.doubleValue();
+}
+
+Double& Double::add(const Double& number) const
+{
+    return *new Double (a + number.doubleValue());
+}
+
+Double& Double::subtract(const Double& number) const
+{
+ // Double added(a - number.doubleValue());
+ // Double& temp = added;
+ // return temp;
+    return *new Double (a - number.doubleValue());
+}
+
+Double& Double::multiply(const Double& number) const
+{
+ // Double added(a * number.doubleValue());
+ // Double& temp = added;
+ // return temp;
+    return *new Double (a * number.doubleValue());
+}
+
+Double& Double::divide(const Double& number) const
+{
+    if (number.doubleValue() == 0)
+        cout << "Error: Division by 0" << endl;
+    else
+    {
+       // Double added(a / number.doubleValue());
+       // Double& temp = added;
+       // return temp;
+        return *new Double (a / number.doubleValue());
+    }
+}
