@@ -1,0 +1,83 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include <cstdlib>
+#include "DoubleWrapper.h"
+using namespace std;
+// int const  DEFAULT_PRECISION=4;
+
+Double::Double(){
+
+	value = 0.0;
+}
+Double::Double(const double& number){
+
+	value = number;
+}
+
+Double::Double(const char* array){
+	char* temp;
+	value = strtod(array, &temp);
+
+}
+
+double Double::doubleValue() const
+{
+	return value;
+}
+
+void Double::print(const int& user_precision) const
+{
+	cout << setprecision(user_precision) << value << endl;
+}
+
+
+void Double::printMantissa() const
+{
+	int number;
+	cout << "Mantissa:" << frexp(value, &number);
+}
+
+void Double::printExponent() const
+{
+	int number;
+	frexp(value, &number);
+	cout << "Exponent:" << n;
+}
+
+bool Double::equals(const Double& other) const{
+
+	return value == other.doubleValue();
+
+}
+
+Double& Double::increment() const{
+
+	return *(new Double(value + 1));
+
+}
+
+
+Double& Double::add(const Double& other_number) const{
+
+	return *new Double(value + other_number.doubleValue());
+}
+Double& Double::subtract(const Double& other_number) const{
+
+	return *new Double(value - other_number.doubleValue());
+
+}
+Double& Double::multiply(const Double& other_number) const{
+
+	return *new Double(value * other_number.doubleValue());
+
+}
+Double& Double::divide(const Double& other_number) const{
+	if (other_number.doubleValue() == 0){
+		cout << "Error! Devision by 0 !! " << endl;
+	}
+	else{
+		return *new Double(value / other_number.doubleValue());
+
+	}
+}
