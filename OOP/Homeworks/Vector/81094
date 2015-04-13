@@ -1,0 +1,161 @@
+#include <iostream>
+#include "intvector.h"
+
+//mSize е индекса на последния елемент в масива
+
+const int EMPTY_VECTOR = -1;
+const int DEFAULT_CAPACITY = 10;
+
+IntVector::IntVector(size_t wantedSize)
+{
+    mSize = wantedSize - 1;
+    mCapacity = wantedSize;
+    mData = new int[mCapacity];
+    for (int i = 0; i < mCapacity; i++)
+        mData[i] = 0;
+}
+
+IntVector::IntVector()
+{
+	mCapacity = DEFAULT_CAPACITY;
+	mSize = EMPTY_VECTOR;
+	mData = new int[mCapacity];
+}
+
+IntVector::IntVector(const IntVector& copiedVector)
+    : mData(NULL), mCapacity(copiedVector.mCapacity)
+    , mSize(copiedVector.mSize)
+{
+    delete[] mData;
+    mData = new int[mCapacity];
+    for (int i = 0; i <= mSize; i++)
+        mData[i] = copiedVector.mData[i];
+}
+
+IntVector::~IntVector()
+{
+    delete[] mData;
+}
+
+bool IntVector::full()
+{
+	return mSize + 1 == mCapacity;
+}
+
+void IntVector::push_back(const int& number)
+{
+	if (full())
+		otherResize();
+    mData[++mSize] = number;
+}
+
+void IntVector::otherResize()
+{
+    int oldCapacity = mCapacity;
+    mCapacity *= 2;
+    std::cout << "resizing" << std::endl;
+    int* newNumbers = new int[mCapacity];
+    for (int i = 0; i < oldCapacity; i++)
+        newNumbers[i] = mData[i];
+    delete[] mData;
+    mData = newNumbers;
+}
+
+void IntVector::resize(size_t newCapacity)
+{
+    if (newCapacity > size())
+    {
+        for (int i = size() + 1; i <= newCapacity; i++)
+            push_back(0);
+    }
+    if (newCapacity < size())
+    {
+        for (int i = size(); i > newCapacity; i--)
+            pop_back();
+    }
+}
+
+bool IntVector::empty() const
+{
+	return mSize == 0;
+}
+
+void IntVector::pop_back()
+{
+	if (!empty())
+		mSize--;
+	else
+		std::cout << "Error: Poping empty vector.";
+}
+
+size_t IntVector::size() const
+{
+	return mSize + 1;
+}
+
+size_t IntVector::capacity() const
+{
+    return mCapacity;
+}
+
+void IntVector::clear()
+{
+    delete[] mData;
+    mData = new int[DEFAULT_CAPACITY];
+    mSize = EMPTY_VECTOR;
+}
+
+void IntVector::copy(const IntVector& vectorBeingCopied)
+{
+    clear();
+    for (int i = 0; i < vectorBeingCopied.size(); i++)
+    {
+        if (i == mCapacity)
+            otherResize();
+        mData[i] = vectorBeingCopied.mData[i];
+        mSize++;
+    }
+}
+
+int& IntVector::front()
+{
+    if (!empty())
+        return mData[0];
+}
+
+int& IntVector::back()
+{
+    if (!empty())
+        return mData[mSize];
+}
+
+const int& IntVector::front() const
+{
+    if (!empty())
+        return mData[0];
+}
+
+const int& IntVector::back() const
+{
+    if (!empty())
+        return mData[mSize];
+}
+
+void IntVector::reserve(size_t reservation)
+{
+    if (reservation > mCapacity)
+        resize(reservation);
+}
+
+void IntVector::shrink_to_fit()
+{
+    if (mCapacity > mSize)
+    {
+        int* newData = new int[size()];
+        for (int i = 0; i < size(); i++)
+            newData[i] = mData[i];
+        delete[] mData;
+        mData = newData;
+        mCapacity = size();
+    }
+}
