@@ -1,0 +1,428 @@
+#include<iostream>
+#include<cstring>
+#include<vector>
+#include <windows.h>
+#include <conio.h>
+using namespace std;
+
+#include"official.h"
+
+//Имплементация на класа Book
+
+Book::Book(){
+ author="";
+ name="";
+ description="";
+ year=0;
+ word="";
+ janr="";
+ reiting=0;
+ number=0;
+}
+
+void Book::SetAuthor(string a){
+     author=a;
+}
+void Book::SetDescription(string b){
+     description=b;
+}
+void Book::SetJanr(string j){
+     janr=j;
+}
+void Book::SetName(string n){
+     name=n;
+}
+void Book::SetWord(string w){
+      word=w;
+}
+void Book::SetYear(int _year){
+   year=_year;
+}
+void Book::SetReiting(int _reiting){
+   reiting=_reiting;
+}
+void Book::SetNumber(int _number) {
+  number=_number;
+}
+bool Book::before(Book const& a1,Book const& a2){
+ return a1.year<a2.year;
+}
+bool Book::beforee(Book const& b1,Book const& b2){
+ return b1.reiting<b2.reiting;
+}
+Book::Book(string author1,string name1,string janr1,string description1,int year1,string word1,int reiting1,int number1){
+    SetAuthor(author1);
+    SetName(name1);
+    SetJanr(janr1);
+    SetDescription(description1);
+    SetYear(year1);
+    SetWord(word1);
+    SetReiting(reiting1);
+    SetNumber(number1);
+}
+void test4();
+
+int Book::GetNumber() const {
+   return number;
+}
+void Book::booksprint(){
+
+     cout<<"Име: "<<name<<endl;
+     cout<<"Aвтор: "<<author<<endl;
+     cout<<"Рейтинг: "<<reiting<<endl;
+     cout<<"Персонален номер: "<<number<<endl;
+     cout<<endl;
+}
+void Book::printall(){
+     cout<<"Име: "<<name<<endl;
+     cout<<"Aвтор: "<<author<<endl;
+     cout<<"Рейтинг: "<<reiting<<endl;
+     cout<<"Година: "<<year<<endl;
+     cout<<"Описание: "<<description<<endl;
+     cout<<"Персонален номер: "<<number<<endl;
+     cout<<endl;
+
+}
+bool Book::find(string option,string value){
+string a ="name";
+string b ="author";
+string c ="word";
+if(option==a && name==value) {
+    return true;
+  }
+else if(option==b && author==value){
+      return true;
+}
+else if(option==c && value==word){
+      return true;
+}
+ else
+ {
+return false;
+}
+}
+void Book::booksfind(string option,string value){
+string a ="name";
+string b ="author";
+string c ="word";
+if(option==a && name==value) {
+    cout<<"Книга: "<<name<<" написана от "<<author;
+  }
+
+else if(option==b && author==value){
+      cout<<"Автор: "<<author<<" Книга: "<<name<<endl;
+  }
+
+else if(option==c && value==word){
+      cout<<"Ключова дума: "<<word<<" книга: "<<name<<endl;
+}
+ else
+ {
+  cout<<"Няма съотвествия!"<<endl;
+}
+}
+
+//Имплементация на класа USER
+
+User::User(){
+   username="";
+   password="";
+   acess=false;
+}
+User::User(string _username,string _password,bool _acess){
+
+username=_username;
+password=_password;
+
+ acess=_acess;
+}
+void User::setNewPass(){
+  string b;
+  cin>>b;
+  password=b;
+}
+bool User::login(string n,string p){
+   if (username==n && password==p){
+    acess=true;
+    return true;
+   }
+return false;
+}
+void User::logout(){
+ acess=false;
+}
+
+void User::deletepass(string namenew1){
+if(username==namenew1){
+   cout<<"Въведете стара парола:";
+   string passnew;
+   getline(cin,passnew);
+   if(password==passnew){
+    string passnew1;
+    string namenew1;
+    cout<<"Въведете ново име: ";
+    getline(cin,namenew1);
+    username=namenew1;
+    cout<<"Въведете нова парола: ";
+    getline(cin,passnew1);
+    password==passnew1;
+   }
+ else {
+   cout<<"Грешна парола!"<<endl;
+ }
+}
+}
+void User::chanepass(string namenew){
+    if(username==namenew){
+   cout<<"Въведете стара парола:";
+   string passnew;
+   getline(cin,passnew);
+   if(password==passnew){
+    string passnew1;
+    cout<<"Въведете нова парола: ";
+    getline(cin,passnew1);
+    password==passnew1;
+   }
+else {
+  cout<<"Грешна парола!"<<endl;
+   }
+}
+}
+void myswap(Book& w1,Book& w2){
+    Book c;
+    c=w1;
+    w1=w2;
+    w2=c;
+}
+void knigi(int,vector<Book>);
+void test3(){
+cout<<"****************************************************"<<endl;
+cout<<"*******************БИБЛИОТЕКА***********************"<<endl;
+cout<<"***  1.Справка за книгите                        ***"<<endl;
+cout<<"***  2.Инфорамция за книга с персонален номер    ***"<<endl;
+cout<<"***  3.Намери книга по опредeлен критерий        ***"<<endl;
+cout<<"***  4.Сортиране на книга по определeн критерий  ***"<<endl;
+cout<<"***  5.Добавяне на книга                         ***"<<endl;
+cout<<"***  6.Премахване на книга                       ***"<<endl;
+cout<<"***  7.Смяна на парола на акаунт                 ***"<<endl;
+cout<<"***  8.Премахване на акаунт и добавяне на нов    ***"<<endl;
+cout<<"***  9.Излизане от системата                     ***"<<endl;
+cout<<"***                                              ***"<<endl;
+cout<<"****************************************************"<<endl;
+}
+void knigistara(int t, vector<Book> &a6){
+int num;
+cout<<"Въведете поредния номер на  книгата, която искате да премахнете: ";
+cin>>num;
+for(int k=0;k<t;k++){
+     if(a6[k].GetNumber()==num){
+        if(k!=(t-1)){
+         cout<<"Ще изтрием: "<<endl;
+         a6[k].booksprint();
+         myswap(a6[k],a6[t-1]);
+         a6.pop_back();
+         break;
+     }
+     else {
+       a6.pop_back();
+       break;}
+}
+}}
+void kniginova(int t,vector<Book> &a5){
+string author1;
+cout<<"Въведете автор: ";
+cin.ignore();
+getline(cin,author1);
+cout<<endl;
+cout<<"Въведете име на книга:";
+string name1;
+cin.ignore();
+getline(cin,name1);
+cout<<endl;
+cout<<"Въведете жанр: ";
+string janr1;
+cin.ignore();
+getline(cin,janr1);
+cout<<endl;
+cout<<"Въведете описание: ";
+string description1;
+cin.ignore();
+getline(cin,description1);
+cout<<endl;
+cout<<"Въведете година: ";
+int year1;
+cin>>year1;
+cout<<"Въведете ключова дума: ";
+string word1;
+cin.ignore();
+getline(cin,word1);
+cout<<endl;
+cout<<"Въведете рейтинг: ";
+int reiting1;
+cin>>reiting1;
+int number1;
+number1=100+t+1;
+Book nova(author1,name1,janr1,description1,year1,word1,reiting1,number1);
+a5.push_back(nova);
+}
+void knigisort(int t,vector<Book> &a4){
+   string a="year";
+   string b="reiting";
+   string nowo;
+   cout<<"Въведете критерий(year , reiting): ";
+   cin>>nowo;
+ if(nowo==a) {
+    for(int i=0;i<t;i++){
+      sort(a4.begin(),a4.end(),Book::before);
+    }
+ }
+ if(nowo==b){
+   for(int i=0;i<t;i++){
+      sort(a4.begin(),a4.end(),Book::beforee);
+    }
+ }
+ for(int j=0;j<t;j++){
+   a4[j].printall();
+ }
+}
+void knigi(int t,vector<Book> a1){
+  for(int i=0;i<t;i++){
+     a1[i].printall();
+  }
+
+}
+void knigiinfo(int t,vector<Book> a2){
+int p;
+cout<<"Въведете номер на книга: ";
+cin>>p;
+bool flag=false;
+for(int i=0;i<t;i++){
+  if(a2[i].GetNumber()==p){
+     flag=true;
+     a2[i].printall();
+     break;
+  }
+  else
+     flag=false;
+}
+if(flag==false){
+  cout<<"Няма такава книга с такъв номер!"<<endl;
+}
+}
+void knigisearch(int t,vector<Book> a3){
+ string option1;
+ string value1;
+ cout<<"Въведете критерий(name , author , word): ";
+ cin>>option1;
+ cout<<"Въведете стойност: ";
+ cin.ignore();
+ getline(cin,value1);
+ int br=0;
+ for(int k=0;k<t;k++){
+    if(a3[k].find(option1,value1)){
+    a3[k].booksfind(option1,value1);
+ }
+ else { br++; }
+}
+if(br==t) { cout<<"Няма съответствия!"<<endl;}
+}
+void changepass(User* a1){
+cout<<"Кой профил искате да промените: ";
+string namenew;
+cin.ignore();
+getline(cin,namenew);
+ for(int i=0;i<5;i++){
+    a1[i].chanepass(namenew);
+ }
+}
+void changeuser(User* a2){
+cout<<"Кой профил искате да промените: ";
+string namenew1;
+cin.ignore();
+getline(cin,namenew1);
+ for(int i=0;i<5;i++){
+  a2[i].deletepass(namenew1);
+ }
+}
+void test2();
+
+void test4(User *employee1){
+vector<Book>lib;
+Book first("Паисий Хилендарски","История славянобългарска","история",
+"Това е първото произведение на народната историография.Този текст  формира българското самосъзнание в годините на робство, когато хората загубват  чувството си за общност.",
+1760,"патриотизъм",10,100);
+Book second("Джон Стюарт Мил","За свободата","психология",
+"В тази книга Мил набляга на значението на индивида, както и на     независимостта от правителството. „За свободата“ продължава да има огромно      влияние върху съвременната философия и политическия свят.",
+1859,"риск",8,101);
+Book third("Ане Франк","Дневникът на Ане Франк","драма",
+"Книгата събира записките на младата Ане Франк, която в продължение на 2 години се крие от нацистката окупация заедно със семейството си в Холандия. През 1944 те са намерени и отведени в концентрационен лагер, където Ане Франка заболява от тиф и умира.",
+1947,"война",9,102);
+Book fourth("Рейчъл Карсън","Тиха пролет","научна-фантастика",
+"„Тиха пролет“ документира вредното въздействие на пестицидите      върху околната среда и човешкото здраве. Книгата, също така, обвинява химическата индустрия в укриване на информация.",
+1962,"природа",6,103);
+lib.push_back(first);
+lib.push_back(second);
+lib.push_back(third);
+lib.push_back(fourth);
+int n=0;
+   while(n>0 && n<9){
+   cout<<"Вашият избор е: ";
+   cin>>n;
+   int t=lib.size();
+   switch(n){
+ case 1: knigi(t,lib); break;
+ case 2: knigiinfo(t,lib); break;
+ case 3: knigisearch(t,lib); break;
+ case 4: knigisort(t,lib); break;
+ case 5: kniginova(t,lib); break;
+ case 6: knigistara(t,lib); break;
+ case 7: changepass(employee1); break;
+ case 8: changeuser(employee1); break;
+  }
+}
+}
+
+void test2(){
+ SetConsoleCP(1251);
+ SetConsoleOutputCP(1251);
+ cout<<"~~~~~~~~~~~~~Добре дошли!~~~~~~~~~~~~~~"<<endl;
+ cout<<"~~~~~                            ~~~~~~"<<endl;
+ cout<<"~~~~~Въведете потребител и парола~~~~~~"<<endl;
+  string nam="";
+  string pass="";
+  cout<<"Потребител: "; cin>>nam;
+  char ch;
+  cout<<"Парола: ";
+   ch = _getch();
+   while(ch != 13){
+      pass.push_back(ch);
+      cout <<'*';
+      ch = _getch();
+   }
+cout<<endl;
+User employee[5];
+employee[0]=User("mihaela","12345",false);
+employee[1]=User("ivan_bg","feelgood",false);
+employee[2]=User("irena_pld","1996",false);
+employee[3]=User("teodoraDD","1988",false);
+employee[4]=User("admin","i<3c++",false);
+
+ for(int i=0;i<5;i++){
+     if(employee[i].login(nam,pass))
+     {
+         cout<<"Здравей "<<nam<<"! "<<endl;
+         test3();
+         break;
+     }
+     else {
+       cout<<"Няма такъв протребител!"<<endl;
+       break;
+     }
+ }
+ test4(employee);
+}
+
+int main(){
+test2();
+return 0;
+}
