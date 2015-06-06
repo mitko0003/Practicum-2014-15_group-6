@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cmath>
+#include "Matrix.h"
+using namespace std;
+
+int main(){
+   Matrix A,K;
+   //cout<<A;
+   Matrix B(2,2);
+   K=B;
+   Matrix C(2,2);
+   cin>>B>>C;
+   //cout<<"K: "<<K;
+   cout<<B*C;
+  // cout<<B.Determinant();
+   //cout<<B.Transposition()<<endl;
+   //cout<<B.Cofactor(0,1)<<endl;
+   //cout<<B.InverseMatrix();
+   //!!cout<<B/C;
+   Rational p(1,2);
+   //cout<<B*p;
+}
