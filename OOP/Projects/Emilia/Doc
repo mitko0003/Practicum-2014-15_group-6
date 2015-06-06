@@ -1,0 +1,82 @@
+Rational(int = 0, int = 1)- Конструктор с подразбиращи се параметри, който конструира рационално число. В случай че не бъдат зададени параметри рационалното число е с числител 0 и знаменател 1.
+
+Rational(Rational const&)- Каструктое за копиране на Разионални числа.
+
+int setNumerator(int)- Функция, която задава числителя.
+	
+int setDenominator(int)-Функция, която задава знаменателя.
+
+int getNumerator() const { return numer; } - Функция, която връща числителя.
+
+int getDenominator() const { return denom; } - Функция, която връща знаменателя.
+
+Rational& operator=(Rational const&)-Оператор, който присвоява едно рационално число на друго.
+
+Rational operator+(Rational const&)-Оператор, който събира 2 рационални числа.
+
+Rational operator-(Rational const&)-Оператор, който изважда 2 рационални числа.
+	
+Rational operator*(Rational const&)-Оператор, който умножава 2 рационални числа.
+	
+Rational operator/(Rational const&)-Оператор, който дели 2 рационални числа.
+	
+Rational& operator+=(Rational const&)-Оператор, който събира повече от 2 рационални числа.
+	
+friend bool operator!=(Rational const&, Rational const&)-Приятелски оператор, който проверява дали 2 рационални числа са различни.
+	
+friend ostream& operator<<(ostream&, Rational const&)- Приятелски оператор, който извежда рационални числа на екрана.
+	
+friend istream& operator>>(istream&, Rational&)–Приятелски оператор, който въвежда рационални числа.
+
+
+
+    
+Matrix()-Конструктор по подразбиране, който конструира матрица с 1 ред и 1 колона, запълнена с нули.
+    
+Matrix(int, int)-Конструктор с параметри, който задава редовете и колконите на 1 матрица.
+
+Matrix(const Matrix&)-Конструктор за копиране на матрици.
+   
+~Matrix()- Деструктор, който разрушава матрицата.
+    
+void setRows(int _rows){rows=_rows;}-Мутатор за редовете, задава стойност на редовете.
+    
+void setColumns(int _columns){columns=_columns;}-Мутатор за колоните, задава стойност на колоните.
+ 
+int getRows(){return rows;}-Връща стойността на редовете.
+    
+int getColumns(){return columns;}-Връща стойността на колоните.
+    
+bool IsAppropriateForSum(Matrix const&)const-Функция, която проверява дали редовете и колоните са с подходящи стойности и дали могат да бъдат събрани 2те матрици.
+    
+bool IsAppropriateForMult(Matrix const&) const-Функция, която проверява дали редовете и колоните са с подходящи стойности и дали могат да бъдат умножени 2те матрици.
+    
+bool CanTransformToIdentityM()const-Функция, която проверява дали 1 матрица може да се превърне в единична.
+   
+bool HasReverse()const-Функция, която проверява дали дадена матрица има обратна.
+   
+Rational Determinant()const-Функция, която намира детерминантата на 1 матрица.
+    
+Matrix Transposition()-Функция, която транспонира 1 матрица.
+    
+Rational Cofactor(int , int)-Функция, която намира детерминантата на адюнгираните количества.
+ 
+Matrix InverseMatrix()-Функция, която намира обратната матрица.
+   
+Matrix operator+(Matrix const&)-Оператор, който събира 2 матрици.
+    
+Matrix operator-(Matrix const&)-Оператор, който изважда 2 матрици.
+    
+Matrix operator*(Matrix const&)-Оператор, който умножава 2 матрици.
+    
+Matrix operator*(Rational const&)-Оператор, който умножадва матрица с рационално число.
+    
+Matrix operator/(Matrix const&)-Оператор, който дели 2 матрици.
+    
+Matrix& operator=(Matrix const&)-Оператор, който присвоява 1 Матрица на друга.
+   
+Rational* operator[](int)-Оператор, който по зададена позиция изважда числото от матрицата на тази позиция.
+    
+friend ostream& operator<<(ostream&, Matrix const&)-Приятелска функция, която извежда матрицата на екрана.
+	
+friend istream& operator>>(istream&, Matrix&)-Приятелска функция, която въвежда матрицата.
