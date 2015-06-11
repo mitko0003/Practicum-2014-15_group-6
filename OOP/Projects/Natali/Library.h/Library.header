@@ -1,0 +1,70 @@
+namespace Books{
+
+	using namespace std;
+
+	class Book{
+	public:
+		// енумератор за жанр
+		enum Genre {
+			fiction=1, nonfiction, periodical, biography, children
+		};
+
+		class Invalid{};
+
+		// конструктор
+		Book(string i, string t, string a, Genre g, int cp, bool ch = false);
+
+		// функции за връщане на полетата на класа
+		string _ISBN() const { return ISBN; }
+		string _title() const { return title; }
+		string _author() const { return author; }
+		int _cpyrghtDate() const { return cpyrghtDate; }
+		Genre _gnr() const { return gnr; }
+
+		// фунции за check-out и check-in на книга (чрез bool поле chkout)
+		void _chkout();
+		void _chkin();
+
+		// полета на класа
+	private:
+		string ISBN;
+		string title;
+		string author;
+		int cpyrghtDate;
+		bool chkout;
+		Genre gnr;
+	};
+	
+	// overload-нати оператори
+	bool operator==(const Book& a, const Book& b);
+	bool operator!=(const Book& a, const Book& b);
+	ostream& operator<<(ostream& os, const Book& b);
+
+	class Patron{
+	public:
+		// конструктор
+		Patron(string n, int c, double f)
+			:name(n), card_number(c), lib_fee(f) {}
+
+		// функции за връщане на полетата на класа
+		string _name() const { return name; }
+		int _card_number() const { return card_number; }
+		double _lib_fee() const { return lib_fee; }
+		void set_fee(double x);
+
+		bool chk_fee();
+
+		// полета на класа
+	private:
+		string name;
+		int card_number;
+		double lib_fee;
+	};
+
+	class Library{
+
+	private:
+		vector<Book> knigi;
+		vector<Patron> klient;
+	};
+}
